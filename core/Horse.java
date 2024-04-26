@@ -92,6 +92,11 @@ public class Horse implements Serializable
         this.fallen = false;
     }
 
+    public boolean hasFallen()
+    {
+        return this.fallen;
+    }
+
     public void setConfidence(double newConfidence)
     {
         this.confidence = newConfidence;
