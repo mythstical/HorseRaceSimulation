@@ -148,3 +148,18 @@ public class Horse implements Serializable
     public int getTotalDistanceTravelled() {
         return totalDistanceTravelled;
     }
+
+    public int getImgFrameChanger() {
+        if (fallen){
+            return 2;
+        }
+        if (imgFrameChanger == 1){
+            imgFrameChanger = 0;
+        }
+        else if (imgFrameChanger == 0){
+            imgFrameChanger = 1;
+        }
+        return imgFrameChanger;
+    }
+}
+
