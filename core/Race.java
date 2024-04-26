@@ -183,21 +183,17 @@ public class Race
     private void printRace()
     {
         System.out.print('\u000C');  //clear the terminal window
-        
+
         multiplePrint('=',raceLength+3); //top edge of track
         System.out.println();
-        
-        printLane(lane1Horse);
-        System.out.println();
-        
-        printLane(lane2Horse);
-        System.out.println();
-        
-        printLane(lane3Horse);
-        System.out.println();
-        
+
+        for ( core.Horse horse : horses ){
+            printLane(horse);
+            System.out.println();
+        }
+
         multiplePrint('=',raceLength+3); //bottom edge of track
-        System.out.println();    
+        System.out.println();
     }
     
     /**
