@@ -49,11 +49,23 @@ public class Horse implements Serializable
 
 
     //Other methods of class Horse
-    public void fall()
+    public void fall(int timeStamp)
     {
-        
+        this.fallen = true;
+        this.confidence = this.confidence - 0.1;
+        this.totalDistanceTravelled += distanceTravelled;
+        this.totalRunningTime += timeStamp;
+        this.racesLost+=1;
     }
-    
+
+    public void win(int timeStamp)
+    {
+        this.confidence = this.confidence + 0.1;
+        this.totalDistanceTravelled += distanceTravelled;
+        this.totalRunningTime += timeStamp;
+        this.racesWon+=1;
+    }
+
     public double getConfidence()
     {
         
