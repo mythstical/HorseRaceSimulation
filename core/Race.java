@@ -1,33 +1,39 @@
-import java.util.concurrent.TimeUnit;
-import java.lang.Math;
+package core;
+
+import gameComponents.GameFrame;
+import gameComponents.GameGraphicPanel;
+
+import java.awt.*;
 
 /**
  * A three-horse race, each horse running in its own lane
  * for a given distance
- * 
- * @author McFarewell
+ *
+ * @author Roze Behzad
  * @version 1.0
  */
 public class Race
 {
-    private int raceLength;
-    private Horse lane1Horse;
-    private Horse lane2Horse;
-    private Horse lane3Horse;
+    int raceLength;
+    core.Horse[] horses;
+    public GameGraphicPanel gameGraphicPanel;
+    private HorseManager horseManager = HorseManager.getInstance();
+
+    private GameFrame parentFrame;
+
+    core.Horse winner;
 
     /**
-     * Constructor for objects of class Race
+     * Constructor for objects of class Core.Race
      * Initially there are no horses in the lanes
-     * 
-     * @param distance the length of the racetrack (in metres/yards...)
+     *
+     * @param distance           the length of the racetrack (in metres/yards...)
      */
-    public Race(int distance)
-    {
-        // initialise instance variables
+    public Race(int distance, core.Horse[] horses, GameGraphicPanel gameGraphicPanel, GameFrame parentFrame) {
         raceLength = distance;
-        lane1Horse = null;
-        lane2Horse = null;
-        lane3Horse = null;
+        this.horses = horses; // array to hold horses
+        this.gameGraphicPanel = gameGraphicPanel;
+        this.parentFrame = parentFrame;
     }
     
     /**
