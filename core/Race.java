@@ -54,35 +54,70 @@ public class Race
      */
     public void startRace()
     {
+
         //declare a local variable to tell us when the race is finished
         boolean finished = false;
-        
-        //reset all the lanes (all horses not fallen and back to 0). 
-        lane1Horse.goBackToStart();
-        lane2Horse.goBackToStart();
-        lane3Horse.goBackToStart();
-                      
-        while (!finished)
-        {
-            //move each horse
-            moveHorse(lane1Horse);
-            moveHorse(lane2Horse);
-            moveHorse(lane3Horse);
-                        
-            //print the race positions
-            printRace();
-            
-            //if any of the three horses has won the race is finished
-            if ( raceWonBy(lane1Horse) || raceWonBy(lane2Horse) || raceWonBy(lane3Horse) )
-            {
-                finished = true;
-            }
-           
-            //wait for 100 milliseconds
-            try{ 
-                TimeUnit.MILLISECONDS.sleep(100);
-            }catch(Exception e){}
+        int timeStamp = 0;
+
+        //reset all the lanes (all horses not fallen and back to 0).
+        for (core.Horse horse : horses) {
+            horse.goBackToStart();
         }
+
+        boolean interrupted = false; // tracks when race is interrupted
+
+        while (!finished) {
+
+            if (Thread.interrupted()) { // handles thread interruption
+                interrupted = true;
+                break;
+            }
+
+            boolean allFallen = true;
+            //if any of the three horses has won the race is finished
+            for (core.Horse horse : horses) {
+                if (raceWonBy(horse, timeStamp)){
+                    finished = true;
+                    this.winner = horse;
+                }
+                if (!horse.hasFallen()){
+                    allFallen = false;
+                }
+            }
+
+            if (allFallen){
+                finished = true;
+//                ui.updateWinner();
+            }
+
+            for (int i = 0; i < horses.length; i++) {
+                //move each horse
+                moveHorse(horses[i], timeStamp);
+                //print the race positions
+                printRace();
+            }
+            gameGraphicPanel.updateGraphicPanel();
+
+
+
+            //wait for 100 milliseconds
+            try {
+                Thread.sleep(100);
+            } catch (InterruptedException e) {
+                interrupted = true;
+                break;
+            }
+            timeStamp++;
+        }
+        if(this.winner == null){
+            this.winner = new core.Horse('A', "No Winner", 0, null, null);
+        }
+        if(interrupted){
+            this.winner = new core.Horse('A', "Terminated", 0, null, null);
+        }
+        RaceStat raceStat = new RaceStat(raceLength, this.winner.getName(), timeStamp, horses, horses.length);
+        parentFrame.onRaceStop(raceStat);
+
     }
     
     /**
