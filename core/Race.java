@@ -119,6 +119,13 @@ public class Race
         parentFrame.onRaceStop(raceStat);
 
     }
+
+    public void stopRace(){
+        //reset all the lanes (all horses not fallen and back to 0).
+        for (core.Horse horse : horses) {
+            horse.goBackToStart();
+        }
+    }
     
     /**
      * Randomly make a horse move forward or fall depending
