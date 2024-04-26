@@ -134,25 +134,26 @@ public class Race
      * 
      * @param theHorse the horse to be moved
      */
-    private void moveHorse(Horse theHorse)
+
+    private void moveHorse(core.Horse theHorse, int timeStamp)
     {
-        //if the horse has fallen it cannot move, 
+        //if the horse has fallen it cannot move,
         //so only run if it has not fallen
-        
+
         if  (!theHorse.hasFallen())
         {
             //the probability that the horse will move forward depends on the confidence;
             if (Math.random() < theHorse.getConfidence())
             {
-               theHorse.moveForward();
+                theHorse.moveForward();
             }
-            
+
             //the probability that the horse will fall is very small (max is 0.1)
-            //but will also will depends exponentially on confidence 
+            //but will also will depends exponentially on confidence
             //so if you double the confidence, the probability that it will fall is *2
             if (Math.random() < (0.1*theHorse.getConfidence()*theHorse.getConfidence()))
             {
-                theHorse.fall();
+                theHorse.fall(timeStamp);
             }
         }
     }
