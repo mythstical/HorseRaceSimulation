@@ -97,6 +97,12 @@ public class Horse implements Serializable
         return this.fallen;
     }
 
+    public void moveForward() {
+        if (!this.fallen) {
+            this.distanceTravelled += 1;
+        }
+    }
+
     public void setConfidence(double newConfidence)
     {
         this.confidence = newConfidence;
