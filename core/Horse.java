@@ -68,47 +68,68 @@ public class Horse implements Serializable
 
     public double getConfidence()
     {
-        
-    }
-    
-    public int getDistanceTravelled()
-    {
-        
-    }
-    
-    public String getName()
-    {
-        
-    }
-    
-    public char getSymbol()
-    {
-        
-    }
-    
-    public void goBackToStart()
-    {
-        
-    }
-    
-    public boolean hasFallen()
-    {
-        
+        return this.confidence;
     }
 
-    public void moveForward()
+    public int getDistanceTravelled()
     {
-        
+        return this.distanceTravelled;
     }
+
+
+    public String getName()
+    {
+        return this.name;
+    }
+
+    public char getSymbol()
+    {
+        return this.symbol;
+    }
+
 
     public void setConfidence(double newConfidence)
     {
-        
+        this.confidence = newConfidence;
     }
-    
+
     public void setSymbol(char newSymbol)
     {
-        
+        this.symbol = newSymbol;
     }
-    
-}
+
+    public Breed getBreed() {
+        return breed;
+    }
+
+    public void setBreed(Breed breed) {
+        this.breed = breed;
+    }
+
+    public HorseColor getCoatColor() {
+        return coatColor;
+    }
+
+    public void setCoatColor(HorseColor color) {
+        this.coatColor = color;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getRacesWon() {
+        return racesWon;
+    }
+
+    public int getRacesLost() {
+        return racesLost;
+    }
+
+    public double getAvgSpeed() {
+        return (double) this.totalDistanceTravelled / this.totalRunningTime;
+    }
+
+    public int getTotalDistanceTravelled() {
+        return totalDistanceTravelled;
+    }
