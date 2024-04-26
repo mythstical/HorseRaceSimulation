@@ -164,10 +164,11 @@ public class Race
      * @param theHorse The horse we are testing
      * @return true if the horse has won, false otherwise.
      */
-    private boolean raceWonBy(Horse theHorse)
+    private boolean raceWonBy(core.Horse theHorse, int timeStamp)
     {
         if (theHorse.getDistanceTravelled() == raceLength)
         {
+            theHorse.win(timeStamp);
             return true;
         }
         else
