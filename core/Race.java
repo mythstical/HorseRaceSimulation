@@ -249,4 +249,18 @@ public class Race
             i = i + 1;
         }
     }
+
+    public void updateUI(Graphics2D g2){
+
+        for (int x = 0; x < horses.length ; x++){
+            g2.drawImage(
+                    horseManager.getHorseImage(horses[x]),
+                    horses[x].getDistanceTravelled() * (gameGraphicPanel.tileSize / 4) + gameGraphicPanel.tileSize,
+                    (x+1) * gameGraphicPanel.tileSize * 2,
+                    gameGraphicPanel.tileSize,
+                    gameGraphicPanel.tileSize,
+                    null);
+        }
+
+    }
 }
