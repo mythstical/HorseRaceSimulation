@@ -42,26 +42,10 @@ public class Race
      * @param theHorse the horse to be added to the race
      * @param laneNumber the lane that the horse will be added to
      */
-    public void addHorse(Horse theHorse, int laneNumber)
-    {
-        if (laneNumber == 1)
-        {
-            lane1Horse = theHorse;
-        }
-        else if (laneNumber == 2)
-        {
-            lane2Horse = theHorse;
-        }
-        else if (laneNumber == 3)
-        {
-            lane3Horse = theHorse;
-        }
-        else
-        {
-            System.out.println("Cannot add horse to lane " + laneNumber + " because there is no such lane");
-        }
+    public void addHorse(core.Horse theHorse, int laneNumber) {
+        horses[laneNumber - 1] = theHorse; // improved adding of horses to their lanes
     }
-    
+
     /**
      * Start the race
      * The horse are brought to the start and
